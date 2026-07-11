@@ -1,4 +1,6 @@
-# Current Status
+# Exploration-Phase Status Archive
+
+This document is a historical snapshot of the repository before the later SQLite/Shiny consolidation work. It is preserved only as an archive of the earlier exploration phase.
 
 As of 2026-07-11, this repository is a small exploratory R workspace for comparing citation activity across three related "Hallmarks" corpora exported from OpenAlex.
 

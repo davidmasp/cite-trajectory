@@ -1,5 +1,7 @@
 # Product Requirements Document: OpenAlex Citation Dataset Builder and Plotting App
 
+This requirements document is kept for product and implementation context. For the current project quickstart, start with [`index.md`](index.md).
+
 ## 1. Summary
 
 Build a small R-based application or program that creates reusable plotting datasets from OpenAlex Work IDs.
