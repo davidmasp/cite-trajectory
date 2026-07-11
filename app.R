@@ -104,6 +104,7 @@ load_plotting_data <- function(
   work_types = character(),
   topic_domains = character(),
   date_range = NULL,
+  exclude_imputed_jan1 = FALSE,
   include_retracted = FALSE,
   include_paratext = FALSE
 ) {
@@ -132,6 +133,10 @@ load_plotting_data <- function(
       sprintf("cw.primary_topic_domain_name in (%s)", sql_in_clause(topic_domains))
     )
     params <- c(params, as.list(topic_domains))
+  }
+
+  if (isTRUE(exclude_imputed_jan1)) {
+    where_parts <- c(where_parts, "strftime('%m-%d', cw.publication_date) <> '01-01'")
   }
 
   if (!isTRUE(include_retracted)) {
@@ -336,6 +341,11 @@ ui <- fluidPage(
         uiOutput("date_filter"),
         uiOutput("work_type_filter"),
         uiOutput("topic_domain_filter"),
+        checkboxInput(
+          "exclude_imputed_jan1",
+          "Exclude likely imputed Jan 1 dates",
+          value = FALSE
+        ),
         checkboxInput("include_retracted", "Include retracted citing works", value = FALSE),
         checkboxInput("include_paratext", "Include paratext citing works", value = FALSE),
         downloadButton("download_data", "Download plotting data"),
@@ -459,6 +469,7 @@ server <- function(input, output, session) {
       work_types = input$work_types,
       topic_domains = input$topic_domains,
       date_range = input$date_range,
+      exclude_imputed_jan1 = isTRUE(input$exclude_imputed_jan1),
       include_retracted = input$include_retracted,
       include_paratext = input$include_paratext
     )
