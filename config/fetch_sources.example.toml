@@ -1,0 +1,24 @@
+continue_on_error = false
+
+[output]
+directory = "../data"
+database = "openalex_citations.sqlite"
+
+[fetch]
+limit = 1000
+per_page = 100
+delay = 0.2
+retries = 4
+timeout = 60
+sort = ""
+email = ""
+api_key = ""
+
+[[sources]]
+id = "W2117692326"
+label = "Hallmarks of Cancer: The Next Generation"
+
+[[sources]]
+id = "https://openalex.org/W1976149758"
+label = "The hallmarks of cancer"
+limit = 500
